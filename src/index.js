@@ -3,22 +3,21 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 
 function Note(props) {
-    const PIXELS_PER_GRID = 28;
+    const PIXELS_PER_GRID = 29;
     const actualGridSize = PIXELS_PER_GRID - 1;
     const [measures, beats, sixteenths] = props.start.split(":").map(x => x | 0)
     const duration = 1 / (props.gate.split("n")[0] | 0) * 16;
     console.log(duration);
     // todo: dynamically generate width
     const style = {
-        top: "2px",
-        left: `${(measures * 16 + beats * 4 + sixteenths) * actualGridSize}px`,
-        width: `${duration * actualGridSize}px`,
+        top: "3px",
+        left: `${(measures * 16 + beats * 4 + sixteenths) * actualGridSize + 1}px`,
+        width: `${duration * actualGridSize - 3}px`,
         overflow: 'visible',
         boxSizing: 'border-box',
-        border: '1px solid white',
         margin: 0,
         background: 'rgba(200, 160, 140, 0.5)',
-        height: `${actualGridSize}px`
+        height: `${actualGridSize - 3}px`
     };
     return <div className="note" style={style}>
         {props.note} {props.start} {props.gate}
@@ -27,7 +26,11 @@ function Note(props) {
 
 function NoteGrid(props) {
     const grid = Array(props.count).fill(null).map(
-        () => <button className="gridCell"></button>
+        (_, index) => {
+            const style = { borderLeft: index % 4 === 0 ? "1px solid #999" : "1px dashed #999" };
+            return < button key={index} style={style} className="gridCell" >
+            </button >
+        }
     )
     return <div className="noteGrid">
         {grid}
@@ -46,8 +49,8 @@ function NoteRow(props) {
 }
 
 function Track(props) {
-    // const allNotes = ["A4", "B4", "C4", "D4", "E4", "F4", "G4"].reverse();
-    const allNotes = ["G4"].reverse();
+    const allNotes = ["A4", "B4", "C4", "D4", "E4", "F4", "G4"].reverse();
+    // const allNotes = ["G4"].reverse();
     const noteRows = allNotes.map(
         (note) => <NoteRow key={note} notes={props.notes.filter(n => n.note === note)} />
     )

@@ -9,14 +9,15 @@ button.gridCell {
     margin-top: -1px;
     margin-left: -1px;
     padding: 0;
-    width: 28px;
-    height: 28px;
+    width: 29px;
+    height: 29px;
 }
 
 .noteRow {
-    margin-top: 30px;
+    margin-top: -1px;
     padding: 0;
     position: relative;
+    height: 29px;
 }
 
 .noteRow .noteGrid {
