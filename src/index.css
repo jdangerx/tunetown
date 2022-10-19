@@ -1,13 +1,28 @@
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    font: 14px Futura, sans-serif;
+    margin: 20px;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+button.gridCell {
+    background: #fff;
+    border: 1px dashed #999;
+    margin-top: -1px;
+    margin-left: -1px;
+    padding: 0;
+    width: 28px;
+    height: 28px;
+}
+
+.noteRow {
+    margin-top: 30px;
+    padding: 0;
+    position: relative;
+}
+
+.noteRow .noteGrid {
+    position: absolute;
+}
+
+.noteRow .note {
+    position: absolute;
 }
