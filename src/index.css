@@ -3,14 +3,30 @@ body {
     margin: 20px;
 }
 
-button.gridCell {
+
+.timeRow {
+    margin-top: -2px;
+}
+
+.timeRow .timeCell {
     background: #fff;
     border: 1px dashed #999;
-    margin-top: -1px;
     margin-left: -1px;
     padding: 0;
     width: 29px;
     height: 29px;
+}
+
+.timeRow .timeCell.beat {
+    border-left-style: solid;
+}
+
+.timeRow .timeCell.active {
+    background: rgba(250, 200, 200, 40)
+}
+
+.arrangement {
+    position: relative;
 }
 
 .noteRow {
@@ -26,4 +42,17 @@ button.gridCell {
 
 .noteRow .note {
     position: absolute;
+}
+
+.transport {
+    margin-bottom: 1em;
+}
+
+.transport .playStop {
+    padding: 1em;
+}
+
+.transport .position {
+    display: inline;
+    font-family: monospace;
 }
