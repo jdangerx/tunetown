@@ -20,8 +20,8 @@ function Note(props) {
         border: '2px solid white',
         height: `${actualGridSize}px`
     };
-    return <div className="note" style={style} onClick={() => props.removeNote(props.note, props.time, props.duration)}>
-        {props.note} {props.time} {props.duration}
+    return <div className="note" style={style} onDoubleClick={() => props.removeNote(props.note, props.time, props.duration)}>
+        {props.note}
     </div>
 }
 
@@ -130,7 +130,8 @@ class DAW extends React.Component {
         this.state = {
             toneStarted: false,
             transportState: "stopped",
-            transportPosition: "   0:   0:   0",
+            transportPosition: "   1:   1:   1",
+            transportStep: 0,
             transport: Tone.Transport,
             notes: [
                 { note: "D4", time: "0:2:1", duration: "8n" }
@@ -160,6 +161,7 @@ class DAW extends React.Component {
         }, "16n")
         this.toggleState();
     }
+
 
     resetNoteEvents() {
         console.log("resetting note events");
@@ -215,8 +217,23 @@ class DAW extends React.Component {
         this.setState({ notes: filtered }, () => this.resetNoteEvents());
     }
 
+    spaceToggle(e) {
+        if (e.key === " ") {
+            this.handleTransportClick();
+        }
+    }
+
+    componentDidMount() {
+        window.addEventListener("keydown", (e) => this.spaceToggle(e));
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener("keydown", (e) => this.spaceToggle(e))
+
+    }
+
     render() {
-        return <div className="daw">
+        return <div className="daw" onKeyPress={(e) => console.log(`key is ${e.key}`)}>
             <Transport
                 handleClick={() => this.handleTransportClick()}
                 transportState={this.state.transportState}
